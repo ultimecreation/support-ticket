@@ -14,18 +14,21 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
-  posts Post[]
-}
+// model User {
+//   id    Int     @id @default(autoincrement())
+//   email String  @unique
+//   name  String?
+//   posts Post[]
+// }
 
-model Post {
-  id        Int     @id @default(autoincrement())
-  title     String
-  content   String?
-  published Boolean @default(false)
-  author    User    @relation(fields: [authorId], references: [id])
-  authorId  Int
+model Ticket {
+  id          Int      @id @default(autoincrement())
+  subject     String
+  description String?
+  priority    String
+  status      String   @default("Open")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  // author    User    @relation(fields: [authorId], references: [id])
+  // authorId  Int
 }
